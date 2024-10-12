@@ -1,0 +1,43 @@
+/*
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+
+
+
+// SOLUTION 1: Sorting Based. Best used when memory usage is a concern. If you can sort the data in place and want to avoid extra space.
+// Time Complexity: O(nlogn)
+// Space Complexity: O(n)
+
+var containsDuplicate = function(nums) 
+{
+    nums.sort((a,b) => a-b);
+    for(let i = 0; i <= nums.length-1; i++)
+    {
+        if(nums[i] === nums[i+1])
+        {
+            return true;
+        }
+    }
+    return false;
+};
+
+
+
+// SOLUTION 2: Set Based. Better used when performance is critical, and you have large datasets, and when you prefer faster execution time over using extra memory.
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+
+var containsDuplicate = function(nums) 
+{
+    const seenNumbers = new Set();
+    for (let i = 0; i < nums.length; i++) 
+    {
+        if (seenNumbers.has(nums[i])) 
+        {
+            return true;
+        }
+        seenNumbers.add(nums[i]);
+    }
+    return false;
+};
